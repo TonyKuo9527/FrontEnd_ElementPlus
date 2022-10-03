@@ -10,8 +10,22 @@ const routes = [
       {
         path: '/dashboard',
         name: 'Dashboard',
-        component: () =>
-          import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
+      },
+      {
+        path: '/try1',
+        name: '1',
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/1.vue'),
+      },
+      {
+        path: '/try2',
+        name: '2',
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/2.vue'),
+      },
+      {
+        path: '/try3',
+        name: '3',
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/3.vue'),
       },
     ],
   },

@@ -1,53 +1,35 @@
 <template>
-    <el-menu :router="true" default-active="1" class="el-menu-vertical-demo">
-        <el-sub-menu index="1">
-            <template #title>
-                <el-icon>
-                    <location />
-                </el-icon>
-                <span>Navigator One</span>
-            </template>
-            <el-menu-item-group>
-                <template #title><span>Group One</span></template>
-                <el-menu-item index="1-1">item one</el-menu-item>
-                <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-                <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-                <template #title><span>item four</span></template>
-                <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
-        </el-sub-menu>
-        <el-menu-item index="2">
-            <el-icon>
-                <icon-menu />
-            </el-icon>
-            <template #title>Navigator Two</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-            <el-icon>
-                <document />
-            </el-icon>
-            <template #title>Navigator Three</template>
-        </el-menu-item>
-        <el-menu-item index="4">
-            <el-icon>
-                <setting />
-            </el-icon>
-            <template #title>Navigator Four</template>
-        </el-menu-item>
+    <el-menu router>
+        <template v-for="item in items" :key="item.url">
+            <el-menu-item :router="item.url" :index="item.url">
+                <template #title>
+                    <router-link :to="item.url" />
+                    <el-icon>
+                        <component :is="item.icon"></component>
+                    </el-icon>
+                    {{item.name}}
+                </template>
+            </el-menu-item>
+        </template>
     </el-menu>
 </template>
   
-<script lang="ts" setup>
-import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-} from '@element-plus/icons-vue'
+<script>
+import { admin, user } from '/src/_nav.js';
+export default ({
+    name: 'BaseSide',
+    component: {
+        admin,
+        user
+    },
+    setup() {
+        console.log(admin);
+        console.log(user)
+        return {
+            items: admin
+        }
+    }
+})
 </script>
 
 <style>
